@@ -1,5 +1,7 @@
 # Minimum Viable VS Code Language Server Extension + VSC LSP-extension
 
+CheckCheck
+
 NOTE: This is heavily based on [lsp-sample from vscode-extension-samples][sample] with the goal of removing example-specific code to ease starting a new Language Server.
 
 This project aims to provide a starting point for developing a self-contained Language Server Extension for VS Code using TypeScript.
