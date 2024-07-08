@@ -1,4 +1,5 @@
-# Minimum Viable VS Code Language Server Extension + VSC LSP-extension
+# Minimum Viable VS Code Language Server Extension
+# VSC LSP-extension
 
 CheckCheck
 
