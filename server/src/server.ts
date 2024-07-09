@@ -23,7 +23,7 @@ const methodLookup: Record<string, RequestMethod> = {
 
 const respond = (id: RequestMessage['id'], result: unknown) => {
     const message = JSON.stringify({id, result});
-    const messageLength = Buffer.byteLength(message, "utf8")
+    const messageLength = Buffer.byteLength(message, "utf-8")
     const header = `Content-Length: ${messageLength}\r\n\r\n`;
 
     log.write(header + message)
@@ -48,7 +48,10 @@ process.stdin.on("data", (chunk) => {
         if(buffer.length < messageStart + contentLength) break;
 
         const rawMessage = buffer.slice(messageStart, messageStart+contentLength);
+
+        /////////////////////
         const message = JSON.parse(rawMessage)
+        /////////////////////
 
         log.write({id: message.id, method: message.method})
 
