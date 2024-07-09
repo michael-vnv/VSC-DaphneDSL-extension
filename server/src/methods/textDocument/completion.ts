@@ -22,8 +22,8 @@ export const completion = (message: RequestMessage ): CompletionList => {
         items: 
         [
             {label: "Check"},
-            {label: "TypeScript"},
-            {label: "LSP"},
+          //  {label: "TypeScript"},
+          //  {label: "LSP"},
             {label: "Lua"},
         ],
     };
