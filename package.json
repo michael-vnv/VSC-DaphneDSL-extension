@@ -1,19 +1,26 @@
 {
-  "name": "REPLACE_ME",
-  "description": "REPLACE_ME",
-  "author": "REPLACE_ME",
+  "name": "daphne_dsl-extension",
+  "description": "An extension for .daphne files",
+  "author": "Michael Vnukov",
   "license": "MIT",
   "version": "1.0.0",
-  "publisher": "REPLACE_ME",
+  "publisher": "Michael Vnukov",
   "categories": [],
   "engines": {
     "vscode": "^1.75.0"
   },
   "activationEvents": [
-    "onLanguage"
+    "onLanguage:daphne"
   ],
   "main": "./client/out/extension",
   "contributes": {
+    "languages": [
+      {
+          "id": "daphne",
+          "extensions": [".daphne"],
+          "aliases": ["DaphneDSL"]
+      }
+   ],
     "configuration": {}
   },
   "scripts": {
@@ -23,7 +30,7 @@
     "postinstall": "cd client && npm install && cd ../server && npm install && cd .."
   },
   "devDependencies": {
-    "@types/node": "^20.5.7",
+    "@types/node": "^20.14.10",
     "typescript": "^5.2.2"
   }
 }

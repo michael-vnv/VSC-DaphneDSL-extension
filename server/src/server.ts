@@ -1,4 +1,4 @@
-import { listenerCount } from "process";
+// import { listenerCount } from "process";
 import log from "./log";
 import { initialize } from "./methods/initialize";
 import { completion } from "./methods/textDocument/completion";

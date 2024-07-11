@@ -16,8 +16,8 @@ export const initialize = (message: RequestMessage):InitializeResult => {
     return {
         capabilities: { completionProvider: {} },
         serverInfo: {
-            name: "lsp-from-scratch",
-            version: "0.0.1",
+            name: "daphne_dsl-extensio",
+            version: "1",
         },
     }
 };

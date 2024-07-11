@@ -1,15 +1,15 @@
 {
-  "name": "REPLACE_ME",
-  "description": "REPLACE_ME",
+  "name": "daphne_dsl-extension",
+  "description": "An extension for .daphne files",
   "version": "1.0.0",
-  "author": "REPLACE_ME",
+  "author": "Michael Vnukov",
   "license": "MIT",
   "engines": {
     "node": "*"
   },
   "repository": {
     "type": "git",
-    "url": "REPLACE_ME"
+    "url": "https://github.com/michael-vnv/VSC-DaphneDSL-extension"
   },
   "dependencies": {}
 }
