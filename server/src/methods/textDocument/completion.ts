@@ -1,46 +1,75 @@
 import { RequestMessage } from "../../server";
-import * as fs from "fs"
+import { documents, TextDocumentIdentifier } from "../../documents";
+// import log from "../../log";
+import * as fs from "fs";
+import { Position } from "../../types";
+
+const MAX_LENGTH = 1000;
+
+//############################
+const inputFilePath = "/Users/me/Desktop/project-draft/draft2/daphneData/Builtins.md";
+const outputFilePath = "/Users/me/Desktop/project-draft/draft2/daphneData/parsedBuiltins.txt";
+
+const content = fs.readFileSync(inputFilePath, "utf-8");
+const regex = /\*\*`(.*?)`\*\*/g;
 
 
-//
-// Absolute path. Works.
-//
-const words = fs.readFileSync("/Users/me/Desktop/project-draft/draft1/server/src/methods/textDocument/words").toString().split("\n");
+const matches = [];
+let match;
+while ((match = regex.exec(content)) !== null) {
+    matches.push(match[1]);
+}
 
-//
-// Relative path 1. Doesn't work.
-//
-// const words = fs.readFileSync("./words").toString().split("\n");
+const uniqueMatches = [...new Set(matches)];
 
-//
-// Relative path 2. Doesn't work.
-//
-// const path = require('path');
-// const wordsPath = path.join(__dirname, 'words');
-// const words = fs.readFileSync(wordsPath).toString().split("\n");
+fs.writeFileSync(outputFilePath, uniqueMatches.join("\n"), { flag: 'w' });  
+// 'w' flag ensures the file is overwritten
+//############################
 
 
-const items = words.map((word) => {
-    return { label: word };
-});
+const words = fs.readFileSync('/Users/me/Desktop/project-draft/draft2/daphneData/parsedBuiltins.txt').toString().split("\n");
+
+
 
 type CompletionItem = {
-    label: string;
+  label: string;
 };
 
 interface CompletionList {
-    isIncomplete: boolean;
-    items: CompletionItem[];
+  isIncomplete: boolean;
+  items: CompletionItem[];
 }
 
-export const completion = (message: RequestMessage ): CompletionList => {
-    return {
-        isIncomplete: false,
-        items,
-        // items: [
-        //     {label: "TypeScript"},
-        //     {label: "LSP"},
-        // ],
+interface TextDocumentPositionParams {
+  textDocument: TextDocumentIdentifier;
+  position: Position;
+}
 
-    };
+export interface CompletionParams extends TextDocumentPositionParams {}
+
+export const completion = (message: RequestMessage): CompletionList | null => {
+  const params = message.params as CompletionParams;
+  const content = documents.get(params.textDocument.uri);
+
+  if (!content) {
+    return null;
+  }
+
+  const currentLine = content.split("\n")[params.position.line];
+  const lineUntilCursor = currentLine.slice(0, params.position.character);
+  const currentPrefix = lineUntilCursor.replace(/.*[\W ](.*?)/, "$1");
+
+  const items = words
+    .filter((word) => {
+      return word.startsWith(currentPrefix);
+    })
+    .slice(0, MAX_LENGTH)
+    .map((word) => {
+      return { label: word };
+    });
+
+  return {
+    isIncomplete: items.length === MAX_LENGTH,
+    items,
+  };
 };

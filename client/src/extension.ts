@@ -40,8 +40,8 @@ export function activate(context: ExtensionContext) {
 
   // Create the language client and start the client.
   client = new LanguageClient(
-    "daphne_dsl-extension language-server-id",
-    "daphne_dsl-extension language server name",
+    "REPLACE_ME language-server-id",
+    "REPLACE_ME language server name",
     serverOptions,
     clientOptions
   );
