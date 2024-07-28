@@ -23,7 +23,7 @@ export const initialize = (message: RequestMessage): InitializeResult => {
       hoverProvider: true,
     },
     serverInfo: {
-      name: "lsp-from-scratch",
+      name: "daphne extension",
       version: "0.0.1",
     },
   };

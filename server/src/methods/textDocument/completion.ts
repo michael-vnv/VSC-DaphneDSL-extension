@@ -3,12 +3,13 @@ import { documents, TextDocumentIdentifier } from "../../documents";
 // import log from "../../log";
 import * as fs from "fs";
 import { Position } from "../../types";
+import * as path from "path";
 
-const MAX_LENGTH = 1000;
 
-//############################
-const inputFilePath = "/Users/me/Desktop/project-draft/draft2/daphneData/Builtins.md";
-const outputFilePath = "/Users/me/Desktop/project-draft/draft2/daphneData/parsedBuiltins.txt";
+const MAX_LENGTH = 300;
+
+const inputFilePath = path.join(__dirname, "../../../../daphneData/Builtins.md");
+const outputFilePath = path.join(__dirname, "../../../../daphneData/parsedBuiltins.txt");
 
 const content = fs.readFileSync(inputFilePath, "utf-8");
 const regex = /\*\*`(.*?)`\*\*/g;
@@ -27,8 +28,7 @@ fs.writeFileSync(outputFilePath, uniqueMatches.join("\n"), { flag: 'w' });
 //############################
 
 
-const words = fs.readFileSync('/Users/me/Desktop/project-draft/draft2/daphneData/parsedBuiltins.txt').toString().split("\n");
-
+const words = fs.readFileSync(outputFilePath).toString().split("\n");
 
 
 type CompletionItem = {
@@ -65,7 +65,9 @@ export const completion = (message: RequestMessage): CompletionList | null => {
     })
     .slice(0, MAX_LENGTH)
     .map((word) => {
-      return { label: word };
+      // return { label: word + "(" };
+      return { label: word};
+
     });
 
   return {
