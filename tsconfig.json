@@ -6,7 +6,12 @@
     "outDir": "out",
     "rootDir": "src",
     "sourceMap": true,
-    "incremental": true
+    "incremental": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@daphneData/*": ["src/daphneData/*"]
+    }
   },
   "include": [
     "src"

@@ -1,10 +1,11 @@
 {
   "name": "daphne_dsl-extension",
+  "displayName": "daphneDsl-Extension",
   "description": "An extension for .daphne files",
   "author": "Michael Vnukov",
   "license": "MIT",
   "version": "1.0.0",
-  "publisher": "Michael Vnukov",
+  "publisher": "Michael-Vnukov",
   "categories": [],
   "engines": {
     "vscode": "^1.75.0"
@@ -16,12 +17,24 @@
   "contributes": {
     "languages": [
       {
-          "id": "daphne",
-          "extensions": [".daphne"],
-          "aliases": ["DaphneDSL"]
+        "id": "daphne",
+        "extensions": [
+          ".daphne"
+        ],
+        "aliases": [
+          "DaphneDSL"
+        ]
       }
-   ],
-    "configuration": {}
+    ],
+    "configuration": {},
+    "configurationDefaults": {
+      "[typescript]": {
+        "typescript.preferences.importModuleSpecifier": "relative"
+      },
+      "[javascript]": {
+        "javascript.preferences.importModuleSpecifier": "relative"
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -30,7 +43,10 @@
     "postinstall": "cd client && npm install && cd ../server && npm install && cd .."
   },
   "devDependencies": {
-    "@types/node": "^20.14.10",
+    "@types/node": "^20.14.12",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "vscode": "^1.1.37"
   }
 }

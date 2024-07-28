@@ -5,6 +5,7 @@ import { initialize } from "./methods/initialize";
 // import { codeAction } from "./methods/textDocument/codeAction";
 import { completion } from "./methods/textDocument/completion";
 // import { diagnostic } from "./methods/textDocument/diagnostic";
+import { diagnostic } from "./methods/textDocument/diagnostic";
 import { didChange } from "./methods/textDocument/didChange";
 // import { didOpen } from "./methods/textDocument/didOpen";
 // import { hover } from "./methods/textDocument/hover";
@@ -28,7 +29,7 @@ type RequestMethod = (
   | ReturnType<typeof initialize>
   | ReturnType<typeof completion>
 //   | ReturnType<typeof codeAction>
-//   | ReturnType<typeof diagnostic>
+  | ReturnType<typeof diagnostic>
 //   | ReturnType<typeof hover>;
 
 type NotificationMethod = (message: NotificationMessage) => void;
@@ -40,7 +41,7 @@ const methodLookup: Record<string, RequestMethod | NotificationMethod> = {
   "textDocument/completion": completion,
   "textDocument/didChange": didChange,
 //   "textDocument/didOpen": didOpen,
-//   "textDocument/diagnostic": diagnostic,
+  "textDocument/diagnostic": diagnostic,
 //   "textDocument/codeAction": codeAction,
 //   "textDocument/hover": hover,
 };
