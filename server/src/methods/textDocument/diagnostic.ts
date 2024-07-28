@@ -44,7 +44,10 @@ export const diagnostic = ( message: RequestMessage ): FullDocumentDiagnosticRep
     }
 
     const wordsInDocument = content.split(/\W/);
-    const invalidWords = new Set(wordsInDocument.filter( (word) => !dictioneryWords.includes(word) ));
+    // const invalidWords = new Set(wordsInDocument.filter( (word) => !dictioneryWords.includes(word) ));
+
+
+    const invalidWords = new Set( wordsInDocument.filter((word) => word !== '' && !dictioneryWords.includes(word)   )  );
 
     const items: Diagnostic[] = []
     const lines = content.split("\n");
@@ -56,9 +59,11 @@ export const diagnostic = ( message: RequestMessage ): FullDocumentDiagnosticRep
             let match;
 
                 // Reset the lastIndex to 0 before starting the search in a new line
-                regex.lastIndex = 0;
+                // regex.lastIndex = 0;
 
-                    while ((match = regex.exec(line)) !== null) {
+                // while ((match = regex.exec(line)) !== null) {
+
+                    if ((match = regex.exec(line)) !== null) {
                         items.push({
                             source: "daphne extension",
                             severity: DiagnosticSeverity.Error,
@@ -69,10 +74,10 @@ export const diagnostic = ( message: RequestMessage ): FullDocumentDiagnosticRep
                             message: `${invalidWord} is not in the dictionary.`
                         });
 
-                        // Avoid infinite loop by advancing lastIndex if the match is an empty string
-                        if (match.index === regex.lastIndex) {
-                            regex.lastIndex++;
-                        }
+                        // // Avoid infinite loop by advancing lastIndex if the match is an empty string
+                        // if (match.index === regex.lastIndex) {
+                        //     regex.lastIndex++;
+                        // }
                     }
         });
     });
