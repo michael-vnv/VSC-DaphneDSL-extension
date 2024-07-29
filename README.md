@@ -11,5 +11,5 @@
     This will open a `[Extension Development Host]` VS Code window.
 7. Open example.daphne from tmp folder.
 8. Typing any text/code in the opened file should invoke:
-    > autocompletion (for DaphneDSL functions)
-    > diagnostics for incorrectly typed functions
+    - autocompletion (for DaphneDSL functions)
+    - diagnostics for incorrectly typed functions
