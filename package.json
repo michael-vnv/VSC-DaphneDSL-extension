@@ -1,5 +1,5 @@
 {
-  "name": "daphne_dsl-extension",
+  "name": "daphne-dsl-extension",
   "displayName": "daphneDsl-Extension",
   "description": "An extension for .daphne and .daph files",
   "author": "Michael Vnukov",

@@ -1,5 +1,5 @@
 {
-  "name": "daphne_dsl-extension",
+  "name": "daphne-dsl-extension",
   "description": "An extension for .daphne file",
   "author": "Michael Vnukov",
   "license": "MIT",

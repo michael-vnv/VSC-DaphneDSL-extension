@@ -1,0 +1,11 @@
+
+
+
+m1 = seq(0, 10, 1);
+f = crea1teFrame(m1, m2, "a", "b");
+
+k = s1ql("SELECT x.a, y.d, x.b + 15, y.c, y.c - 1 FroM x, y Where 0.5;");
+
+print(h);
+prlnt(k);
+
