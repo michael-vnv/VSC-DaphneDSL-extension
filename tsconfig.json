@@ -24,4 +24,5 @@
     { "path": "./client" },
     { "path": "./server" }
   ]
+  
 }

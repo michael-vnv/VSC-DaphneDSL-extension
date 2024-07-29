@@ -69,7 +69,8 @@ outerGe
 agg
 cumAgg
 reshape
-transpose/t
+transpose
+t
 cbind
 rbind
 reverse
@@ -109,7 +110,9 @@ quantize
 print
 readFrame
 readMatrix
-write/writeFrame/writeMatrix
+write
+writeFrame
+writeMatrix
 stop
 oneHot
 recode

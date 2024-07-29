@@ -4,7 +4,6 @@ import {
   VersionedTextDocumentIdentifier,
   TextDocumentContentChangeEvent,
 } from "../../documents";
-import log from "../../log";
 
 interface DidChangeTextDocumentParams {
   textDocument: VersionedTextDocumentIdentifier;

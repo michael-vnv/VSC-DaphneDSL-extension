@@ -3,8 +3,8 @@ export interface Position {
     character: number;
   }
   
-  export interface Range {
-    start: Position;
-    end: Position;
-  }
+export interface Range {
+  start: Position;
+  end: Position;
+}
   

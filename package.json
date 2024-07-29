@@ -1,7 +1,7 @@
 {
   "name": "daphne_dsl-extension",
   "displayName": "daphneDsl-Extension",
-  "description": "An extension for .daphne files",
+  "description": "An extension for .daphne and .daph files",
   "author": "Michael Vnukov",
   "license": "MIT",
   "version": "1.0.0",
@@ -19,10 +19,13 @@
       {
         "id": "daphne",
         "extensions": [
-          ".daphne"
+          ".daphne",
+          ".daph"
         ],
         "aliases": [
-          "DaphneDSL"
+          "DaphneDSL",
+          "daphneDSL",
+          "daphnedsl"
         ]
       }
     ],

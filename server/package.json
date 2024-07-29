@@ -1,6 +1,6 @@
 {
   "name": "daphne_dsl-extension",
-  "description": "An extension for .daphne files",
+  "description": "An extension for .daphne and .daph files",
   "version": "1.0.0",
   "author": "Michael Vnukov",
   "license": "MIT",

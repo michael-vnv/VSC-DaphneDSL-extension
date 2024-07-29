@@ -1,6 +1,5 @@
 import { RequestMessage } from "../../server";
 import { documents, TextDocumentIdentifier } from "../../documents";
-// import log from "../../log";
 import * as fs from "fs";
 import { Position } from "../../types";
 import * as path from "path";
@@ -14,22 +13,22 @@ const outputFilePath = path.join(__dirname, "../../../../daphneData/parsedBuilti
 const content = fs.readFileSync(inputFilePath, "utf-8");
 const regex = /\*\*`(.*?)`\*\*/g;
 
-
 const matches = [];
 let match;
 while ((match = regex.exec(content)) !== null) {
-    matches.push(match[1]);
+  matches.push(match[1]);
 }
 
 const uniqueMatches = [...new Set(matches)];
 
-fs.writeFileSync(outputFilePath, uniqueMatches.join("\n"), { flag: 'w' });  
-// 'w' flag ensures the file is overwritten
-//############################
+const formattedMatches = uniqueMatches
+  .join("\n")
+  .replace(/\/(?!\n)/g, '\n');
 
+fs.writeFileSync(outputFilePath, formattedMatches, { flag: 'w' });
+// 'w' flag ensures the file is overwritten
 
 const words = fs.readFileSync(outputFilePath).toString().split("\n");
-
 
 type CompletionItem = {
   label: string;
@@ -65,9 +64,8 @@ export const completion = (message: RequestMessage): CompletionList | null => {
     })
     .slice(0, MAX_LENGTH)
     .map((word) => {
-      // return { label: word + "(" };
-      return { label: word};
-
+      return { label: word + "(" };
+      // return { label: word};
     });
 
   return {
