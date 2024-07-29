@@ -44,16 +44,23 @@ export const diagnostic = ( message: RequestMessage ): FullDocumentDiagnosticRep
     }
 
     const wordsInDocument = content.split(/\W/);
+// 
 
     const invalidWords = new Set( wordsInDocument.filter( (word) => word !== '' && !functionsList.includes(word) ) );
+
+    // Temporary fix for casts: as.///
+    const casts = ['scalar', 'matrix', 'frame', 'f32', 'ui8'];
+    casts.forEach(word => invalidWords.delete(word));
 
     const items: Diagnostic[] = []
     const lines = content.split("\n");
 
     invalidWords.forEach((invalidWord) => {
+
         const regex = new RegExp(`\\b${invalidWord}\\(`, "g");
 
         lines.forEach((line, lineNumber) => {
+
             let match;
 
             while ((match = regex.exec(line)) !== null) {

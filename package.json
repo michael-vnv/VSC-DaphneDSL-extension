@@ -22,6 +22,7 @@
           ".daphne",
           ".daph"
         ],
+        "configuration": "./language-configuration.json",
         "aliases": [
           "DaphneDSL",
           "daphneDSL",

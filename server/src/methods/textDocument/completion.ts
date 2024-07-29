@@ -9,6 +9,10 @@ const MAX_LENGTH = 300;
 
 const inputFilePath = path.join(__dirname, "../../../../daphneData/Builtins.md");
 const outputFilePath = path.join(__dirname, "../../../../daphneData/parsedBuiltins.txt");
+const sqlPath = path.join(__dirname, "../../../../daphneData/sqlFunctions.txt");
+const castsPath = path.join(__dirname, "../../../../daphneData/casts.txt");
+
+
 
 const content = fs.readFileSync(inputFilePath, "utf-8");
 const regex = /\*\*`(.*?)`\*\*/g;
@@ -28,7 +32,17 @@ const formattedMatches = uniqueMatches
 fs.writeFileSync(outputFilePath, formattedMatches, { flag: 'w' });
 // 'w' flag ensures the file is overwritten
 
+const sqlFileContent = fs.readFileSync(sqlPath, 'utf-8');
+// Append the SQL file content to the output file
+fs.appendFileSync(outputFilePath, '\n' + sqlFileContent);
+
+const castsPathContent = fs.readFileSync(castsPath, 'utf-8');
+// Append the Casts file content to the output file
+fs.appendFileSync(outputFilePath, '\n' + castsPathContent);
+
+
 const words = fs.readFileSync(outputFilePath).toString().split("\n");
+
 
 type CompletionItem = {
   label: string;

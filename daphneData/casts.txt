@@ -1,0 +1,5 @@
+as.scalar
+as.matrix
+as.frame
+as.f32
+as.ui8

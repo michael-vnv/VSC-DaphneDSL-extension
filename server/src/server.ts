@@ -3,6 +3,7 @@ import { completion } from "./methods/textDocument/completion";
 import { diagnostic } from "./methods/textDocument/diagnostic";
 import { didChange } from "./methods/textDocument/didChange";
 import { didOpen } from "./methods/textDocument/didOpen";
+import { hover } from "./methods/textDocument/hover";
 
 interface Message {
   jsonrpc: string;
@@ -23,6 +24,8 @@ type RequestMethod = (
   | ReturnType<typeof initialize>
   | ReturnType<typeof completion>
   | ReturnType<typeof diagnostic>
+  | ReturnType<typeof hover>;
+
 
 type NotificationMethod = (message: NotificationMessage) => void;
 
@@ -32,6 +35,7 @@ const methodLookup: Record<string, RequestMethod | NotificationMethod> = {
   "textDocument/didChange": didChange,
   "textDocument/didOpen": didOpen,
   "textDocument/diagnostic": diagnostic,
+  "textDocument/hover": hover,
 };
 
 const respond = (id: RequestMessage["id"], result: object | null) => {
