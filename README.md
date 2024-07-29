@@ -12,4 +12,4 @@
 7. Open example.daphne from tmp folder.
 8. Typing any text/code in the opened file should invoke:
     - autocompletion (for DaphneDSL functions)
-    - diagnostics for incorrectly typed functions
+    - diagnostics for incorrectly typed functions (working both on file opening and on a function typing)
