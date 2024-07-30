@@ -30,15 +30,15 @@ export function activate(context: ExtensionContext) {
 
   // Options to control the language client
   const clientOptions: LanguageClientOptions = {
-    // Register the server for all documents by default
+    // Registers the server for indicated file type
     documentSelector: [{ scheme: "file", language: "daphne" }],
     synchronize: {
-      // Notify the server about file changes to '.clientrc files contained in the workspace
+      // Notifies the server about file changes to '.clientrc files contained in the workspace
       fileEvents: workspace.createFileSystemWatcher("**/.clientrc"),
     },
   };
 
-  // Create the language client and start the client.
+  // Creates the language client and starts it.
   client = new LanguageClient(
     "Daphne language-server-id",
     "Daphne language server name",
@@ -46,10 +46,11 @@ export function activate(context: ExtensionContext) {
     clientOptions
   );
 
-  // Start the client. This will also launch the server
+  // Starts the client and server.
   client.start();
 }
 
+// Stops the client
 export function deactivate(): Thenable<void> | undefined {
   if (!client) {
     return undefined;

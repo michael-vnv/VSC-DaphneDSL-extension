@@ -4,7 +4,7 @@ import { Range } from "../../types";
 import * as path from "path";
 import * as fs from "fs";
 
-
+// creates a list of words used for diagnostics
 const outputFilePath = path.join(__dirname, "../../../../daphneData/parsedBuiltins.txt");
 const functionsList = fs.readFileSync(outputFilePath).toString().split("\n");
 
@@ -12,6 +12,8 @@ interface DocumentDiagnosticParams{
     textDocument: TextDocumentIdentifier;
 }
 
+// types of messages presented upon issues.
+// currently implemented only Error
 namespace DiagnosticSeverity {
     export const Error: 1=1;
     export const Warning: 2=2;
@@ -44,7 +46,6 @@ export const diagnostic = ( message: RequestMessage ): FullDocumentDiagnosticRep
     }
 
     const wordsInDocument = content.split(/\W/);
-// 
 
     const invalidWords = new Set( wordsInDocument.filter( (word) => word !== '' && !functionsList.includes(word) ) );
 

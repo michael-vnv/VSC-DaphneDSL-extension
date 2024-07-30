@@ -1,6 +1,4 @@
 
-
-
 m1 = seq(0, 10, 1);
 f = crea1teFrame(m1, m2, "a", "b");
 

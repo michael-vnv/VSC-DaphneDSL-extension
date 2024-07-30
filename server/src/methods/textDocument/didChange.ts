@@ -5,6 +5,8 @@ import {
   TextDocumentContentChangeEvent,
 } from "../../documents";
 
+// If document is changed. 
+// The version number points to the version after all provided content changes have been applied.
 interface DidChangeTextDocumentParams {
   textDocument: VersionedTextDocumentIdentifier;
   contentChanges: TextDocumentContentChangeEvent[];
