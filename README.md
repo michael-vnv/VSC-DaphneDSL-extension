@@ -32,13 +32,12 @@ to install "vsce", the CLI tool for managing VS Code extensions
 > Diagnostics   
 - detects function names which have typos. Underlines + shows their location in VSC Problems panel
 > Hover functionality   
-- Hover is activated only for builtin function names, upon hovering over a name   
-(at the moment works only for names without following characters)
+- Hover is activated only for builtIn function names, upon hovering over a name   
 > Brackets and parentheses pairing, indentation, highlighing and matching
 
 ## Examples
 
-upon typing: outerAdd   
+upon typing: outerAdd(   
 - a name of a builtin function. Upon hover a defenition is presented.  
 
 upon typing: out1rAdd( or outerAdd()   
