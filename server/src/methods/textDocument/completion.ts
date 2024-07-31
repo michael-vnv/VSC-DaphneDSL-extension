@@ -47,22 +47,27 @@ type CompletionItem = {
   label: string;
 };
 
+// Defines an interface for a list of completion items, 
+// including a boolean flag 'isIncomplete' and an array of 'CompletionItem's
 interface CompletionList {
   isIncomplete: boolean;
   items: CompletionItem[];
 }
 
+// Defines an interface for text document position parameters including a 'textDocument' identifier and a 'position'
 interface TextDocumentPositionParams {
   textDocument: TextDocumentIdentifier;
   position: Position;
 }
 
+// Extends the 'TextDocumentPositionParams' interface to create a new interface 'CompletionParams'
 export interface CompletionParams extends TextDocumentPositionParams {}
 
 export const completion = (message: RequestMessage): CompletionList | null => {
   const params = message.params as CompletionParams;
   const content = documents.get(params.textDocument.uri);
 
+  // If no content is found for the given document URI, return null
   if (!content) {
     return null;
   }
@@ -82,6 +87,7 @@ export const completion = (message: RequestMessage): CompletionList | null => {
       // return { label: word};
     });
 
+  // Returns a 'CompletionList' with 'isIncomplete' set to true if the number of items equals MAX_LENGTH, and the list of items
   return {
     isIncomplete: items.length === MAX_LENGTH,
     items,

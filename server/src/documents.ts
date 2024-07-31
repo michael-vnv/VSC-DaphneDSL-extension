@@ -43,7 +43,13 @@ export const wordUnderCursor = (
   const lines = document.split("\n");
   const line = lines[position.line];
 
-  const start = line.lastIndexOf(" ", position.character) + 1;
+  // const start = line.lastIndexOf(" ", position.character) + 1;
+
+  const start = Math.max(
+    line.lastIndexOf(" ", position.character),
+    line.lastIndexOf("(", position.character)
+  ) + 1;
+  
   const end = line.indexOf(" ", position.character);
 
   if (end === -1) {

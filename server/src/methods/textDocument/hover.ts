@@ -18,13 +18,13 @@ type Hover = {
 };
 
 // file providing trigger events for Hover (function names)
-const dictionaryFilePath = join(__dirname, "../../../../daphneData/parsedBuiltins.txt");
-const dictionaryContent = readFileSync(dictionaryFilePath, "utf-8");
-const dictionaryWords = dictionaryContent.split("\n");
+const builtInsListFilePath = join(__dirname, "../../../../daphneData/parsedBuiltins.txt");
+const builtInsContent = readFileSync(builtInsListFilePath, "utf-8");
+const builtInsList = builtInsContent.split("\n");
 
 // file providing Hover message content
-const inputFilePath = join(__dirname, "../../../../daphneData/Builtins.md");
-const fileContent = readFileSync(inputFilePath, "utf-8");
+const languageRefFilePath = join(__dirname, "../../../../daphneData/Builtins.md");
+const fileContent = readFileSync(languageRefFilePath, "utf-8");
 const lines = fileContent.split("\n");
 
 
@@ -37,23 +37,47 @@ export const hover = (message: RequestMessage): Hover | null => {
     return null;
   }
 
-  if (!dictionaryWords.includes(currentWord.text)) {
+  // const currentWordInDictionary = builtInsList.includes(currentWord.text);
+
+  // Check if any word in the dictionary is a prefix of the current word with "(" immediately after the prefix
+  const hasPrefixInDictionary = [...builtInsList].some(dictWord => 
+    currentWord.text.startsWith(dictWord + "(")
+  );
+
+  // if (!currentWordInDictionary && !hasPrefixInDictionary) { 
+  if (!hasPrefixInDictionary) { 
+
     return null;
   }
 
+  const baseWord = currentWord.text.split('(')[0]; // remove everything before "("
   // finds only appropriate strings based on syntax of Builtins.md
-  const startPatterns = [`- **\`${currentWord.text}\``, `- ***\`${currentWord.text}\``, `| **\`${currentWord.text}\``];
-  const startIndex = lines.findIndex((line) => startPatterns.some(pattern => line.includes(pattern)));
+  const startPatterns = [
+    `- **\`${baseWord}\``,
+    `- ***\`${baseWord}\``,
+    `| **\`${baseWord}\``
+  ];
+  const startIndex = lines.findIndex(
+    (line) => startPatterns.some(
+      pattern => line.includes(pattern)
+    )
+  );
 
   if (startIndex === -1) {
-    return null;
+    return {
+      contents: {
+        kind: "markdown",
+        value: 'currently no defenition in Ref',
+      },
+      range: currentWord.range,
+    };
   }
 
   const endIndex = lines.slice(startIndex + 1).findIndex((line) => line.startsWith("- **`") || line.startsWith("##") || line.startsWith("- ***`") || line.startsWith("| **`")) + startIndex + 1;
   const rawDefinition = lines.slice(startIndex, endIndex).join("\n");
 
   const value =
-    `${currentWord.text}\n${"-".repeat(currentWord.text.length)}\n\n` +
+      `${baseWord}\n${"-".repeat(currentWord.text.length)}\n\n` +
     rawDefinition;
 
   return {

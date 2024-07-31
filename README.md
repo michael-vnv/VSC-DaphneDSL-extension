@@ -19,23 +19,22 @@ to install "vsce", the CLI tool for managing VS Code extensions
 3. `cd` into the folder
 3. Run `vsce package`
 - VSC-DaphneDSL-extension.vsix is generated in the same folder
-
 5. VSC `⌘+shift+D` to open extensions pane
 <br> At the top click on `...` 
 <br> and choose `Install from VSIX...` 
 
 ## Extension functionality
 
-  > Activated right away on file opening
+> Activated right away on file opening  
 
-  > Autocomplete for DaphneDSL builtin functions  
-  - via a list, parsed from Builtins.md file at each start
-  > Diagnostics   
-  - detects function names which have typos. Underlines + shows their location in VSC Problems panel
-  > Hover functionality   
-  - Hover is activated only for builtin function names, upon hovering over a name   
-  (at the moment works only for names without following characters)
-  > Brackets and parentheses pairing, indentation, highlighing and matching
+> Autocomplete for DaphneDSL builtin functions  
+- via a list, parsed from Builtins.md file at each start
+> Diagnostics   
+- detects function names which have typos. Underlines + shows their location in VSC Problems panel
+> Hover functionality   
+- Hover is activated only for builtin function names, upon hovering over a name   
+(at the moment works only for names without following characters)
+> Brackets and parentheses pairing, indentation, highlighing and matching
 
 ## Examples
 
