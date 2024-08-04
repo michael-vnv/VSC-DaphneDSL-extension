@@ -5,4 +5,5 @@ client/server
 tsconfig.tsbuildinfo
 # Ignore Mac DS_Store files
 .DS_Store
+.vsix
 parsedBuiltins.txt
